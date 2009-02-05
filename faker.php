@@ -26,26 +26,18 @@ class Faker
 	{
 	}
 	
-	public function __tostring()
-	{
+	public function __tostring() {
 		return "";
 	}
 		
-	public function &__get( $var )
-	{
-		if (empty(Faker::$_instances[$var])) {
-
+	public function &__get( $var ){
+		if (empty(self::$_instances[$var])) {
 			$filename = "lib/".strtolower($var).".php";
-
-			if(!file_exists($filename))
-				return NULL;
-
 			include $filename;
-
-			Faker::$_instances[$var] = new $var;
+			self::$_instances[$var] = new $var;
 
 		}
-		return Faker::$_instances[$var];
+		return self::$_instances[$var];
 	}
 	
 	// todo: use __autoload()
@@ -131,18 +123,4 @@ class Faker
 	}
 	
 }
-/*
-<<<<<<< HEAD:faker.php
-// Include the library files
-include 'lib/address.php';
-include 'lib/company.php';
-include 'lib/internet.php';
-include 'lib/name.php';
-include 'lib/phone_number.php';
-include 'lib/lorem.php';
-include 'lib/english.php';
-include 'lib/number.php';
-
-=======
->>>>>>> 7997687e7ce1029626eb01263353a0e34995b1a2:faker.php*/
 ?>
