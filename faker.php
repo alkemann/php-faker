@@ -130,5 +130,6 @@ include 'lib/name.php';
 include 'lib/phone_number.php';
 include 'lib/lorem.php';
 include 'lib/english.php';
+include 'lib/number.php';
 
 ?>
