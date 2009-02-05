@@ -8,6 +8,7 @@
  * @copyright 2007 Caius Durling
  * @author Caius Durling
  * @author ifunk
+ * @author FionaSarah
  * 
  */
 
@@ -19,7 +20,7 @@
 class Faker
 {
 	
-	private $_instances = array();
+	public static $_instances = array();
 	
 	public function __construct()
 	{
@@ -32,10 +33,19 @@ class Faker
 		
 	public function &__get( $var )
 	{
-		if (empty($this->_instances[$var])) {
-			$this->_instances[$var] = new $var;
+		if (empty(Faker::$_instances[$var])) {
+
+			$filename = "lib/".strtolower($var).".php";
+
+			if(!file_exists($filename))
+				return NULL;
+
+			include $filename;
+
+			Faker::$_instances[$var] = new $var;
+
 		}
-		return $this->_instances[$var];
+		return Faker::$_instances[$var];
 	}
 	
 	// todo: use __autoload()
@@ -121,7 +131,8 @@ class Faker
 	}
 	
 }
-
+/*
+<<<<<<< HEAD:faker.php
 // Include the library files
 include 'lib/address.php';
 include 'lib/company.php';
@@ -132,4 +143,6 @@ include 'lib/lorem.php';
 include 'lib/english.php';
 include 'lib/number.php';
 
+=======
+>>>>>>> 7997687e7ce1029626eb01263353a0e34995b1a2:faker.php*/
 ?>
