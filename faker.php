@@ -129,5 +129,6 @@ include 'lib/internet.php';
 include 'lib/name.php';
 include 'lib/phone_number.php';
 include 'lib/lorem.php';
+include 'lib/english.php';
 
 ?>
