@@ -10,7 +10,7 @@ class Time extends Faker {
 		return $this->$var();		
 	}
 	
-	public function date($options = array()) {
+	public static function date($options = array()) {
 		$options = am(array('variable'=>null,'min'=>'','max'=>''),$options);
 		switch ($options['variable']) {
 			case 'now' :
@@ -48,7 +48,7 @@ class Time extends Faker {
 		return date('Y-m-d',$timestamp);
 	}
 	
-	public function time($options = array()) {	
+	public static function time($options = array()) {	
 		if (isset($options['max']) && $options['max'] != '') {
 			$arr = explode(' ',$options['max']);
 			if (sizeof($arr) > 1) {
@@ -75,9 +75,28 @@ class Time extends Faker {
 		return date('H:i:s',$timestamp);
 	}
 	
-	public function datetime($options = array()) {
+	public static function datetime($options = array()) {
 		return self::date($options) . ' ' . self::time($options);
 	}
+	
+	public static function timestamp($options = array()) {
+		return time();
+	}
+
+	public static function year($options = array()) {
+		$now = date('Y');
+		$min = (isset($options['min'])) ? $options['min'] : $now - 75;
+		$max = (isset($options['max'])) ? $options['min'] : $now;
+		return rand($min,$max);
+	}
+	public static function month($options = array()) {
+		return rand(1,12);
+	}
+	public static function day($options = array()) {
+		$max = (isset($options['max'])) ? $options['max'] : 28;
+		return rand(1,$max);
+	}
+	
 	
 	
 }

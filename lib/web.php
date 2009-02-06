@@ -41,7 +41,7 @@ class Web extends Faker {
 	public static function url($options = array()) {
 		App::import('vendor', 'dummy.phpfaker/lib/dummy_data');
 		$urls = &DummyData::get_urls();
-		return $urls[rand(0, count($urls) - 1)];;
+		return $urls[rand(0, count($urls) - 1)];
 	}
 		
 	/**

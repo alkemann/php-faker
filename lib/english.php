@@ -8,7 +8,11 @@ class English extends Faker {
 	public function __get($var) {
 		return $this->$var();
 	}
-	public function title($options = array()) {
+	public static function color($options = array()) {
+		$colors = &DummyData::get_colors();
+		return $colors[rand(0, count($colors) - 1)];
+	}
+	public static function title($options = array()) {
 		$max = (isset($options['max'])) ? $options['max'] : 255;
 		$nouns = DummyData::getNouns();
 		$noun = $nouns[rand(0, count($nouns) - 1)];
