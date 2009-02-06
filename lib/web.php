@@ -1,5 +1,6 @@
 <?php
 class Web extends Faker {
+	private static $_domain_suffix = array('co.uk','com','us','org','ca','biz','info','name','no');
 	
 	public function __construct(){}
 	
@@ -43,7 +44,26 @@ class Web extends Faker {
 		$urls = &DummyData::get_urls();
 		return $urls[rand(0, count($urls) - 1)];
 	}
-		
+	public function domain_suffix()
+	{
+		return parent::random( self::$_domain_suffix );
+	}
+	
+	public function domain_word()
+	{
+		$result = explode( ' ', parent::__get('Company')->name );
+		$result = $result[0];
+		$result = strtolower( $result );
+		$result = preg_replace( "/\W/", '', $result );
+		return $result;
+	}
+	
+	public function domain_name()
+	{
+		$result[] = $this->domain_word;
+		$result[] = $this->domain_suffix;
+		return join( $result, '.' );
+	}	
 	/**
 	 * Generates HTML content for a string. Adding some html formating code to the content
 	 * $options min_size and max
