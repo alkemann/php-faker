@@ -1,4 +1,12 @@
 <?php
+/**
+ * Library class for date and time related data
+ * 
+ * @author Ronny 'rvv' Vindenes
+ * @author Alexander 'alkemann' Morland
+ * @modified 6. feb. 2009
+ * 
+ */
 class Time extends Faker {
 
 	public function __construct()

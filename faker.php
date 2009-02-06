@@ -3,20 +3,17 @@
 /**
  * Class for generating fake data
  * 
- * @package Faker
- * @version 0.2
- * @copyright 2007 Caius Durling
+ * This version of faker has significantly broken off from original project, but
+ * it's methods are highly inspired by the Php-Faker by Caius Durling.
+ * 
+ * @license MIT
  * @author Caius Durling
  * @author ifunk
  * @author FionaSarah
- * 
+ * @author Alexander 'alkemann' Morland
+ * @version 2.0
+ * @modified 6. feb 2009
  */
-
-/**
-* Faker Class
-* 
-* @package Faker
-*/
 class Faker
 {
 	

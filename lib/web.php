@@ -1,4 +1,13 @@
 <?php
+/**
+ * Library class for generating web related data.
+ * 
+ *
+ * @author Caius Durling
+ * @author Alexander 'alkemann' Morland
+ * @modified 6. feb. 2009
+ * 
+ */
 class Web extends Faker {
 	private static $_domain_suffix = array('co.uk','com','us','org','ca','biz','info','name','no');
 	
@@ -44,11 +53,20 @@ class Web extends Faker {
 		$urls = &DummyData::get_urls();
 		return $urls[rand(0, count($urls) - 1)];
 	}
+	
+	/**
+ 	 * @author Caius Durling
+	 * @return string
+	 */
 	public function domain_suffix()
 	{
 		return parent::random( self::$_domain_suffix );
 	}
 	
+	/**
+ 	 * @author Caius Durling
+	 * @return string
+	 */
 	public function domain_word()
 	{
 		$result = explode( ' ', parent::__get('Company')->name );
@@ -58,6 +76,10 @@ class Web extends Faker {
 		return $result;
 	}
 	
+	/**
+ 	 * @author Caius Durling
+	 * @return string
+	 */
 	public function domain_name()
 	{
 		$result[] = $this->domain_word;

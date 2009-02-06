@@ -1,4 +1,11 @@
 <?php
+/**
+ * Library class for dummy texts in english
+ * 
+ * @author Alexander 'alkemann' Morland
+ * @modified 6. feb. 2009
+ * 
+ */
 App::import('vendor', 'dummy.phpfaker/lib/dummy_data');
 class English extends Faker {
 	

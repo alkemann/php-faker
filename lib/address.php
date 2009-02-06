@@ -1,10 +1,14 @@
 <?php
 
 /**
-* Address Class
-* 
-* @package faker
-*/
+ * Library class for adress related data
+ * 
+ *
+ * @author Caius Durling
+ * @author Alexander 'alkemann' Morland
+ * @modified 6. feb. 2009
+ * 
+ */
 class Address extends Faker
 {
 	 

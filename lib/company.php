@@ -1,10 +1,11 @@
 <?php
-
 /**
-* Company Class
-* 
-* @package faker
-*/
+ * Library class for company related texts
+ * 
+ *
+ * @author Caius Durling
+ * 
+ */
 class Company extends Faker
 {
 	/**

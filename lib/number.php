@@ -1,4 +1,14 @@
 <?php
+/**
+ * Library class for number related data
+ * 
+ *
+ * @author Ronny 'rvv' Vindenes
+ * @author Eskil Saadtvedt
+ * @author Alexander 'alkemann' Morland
+ * @modified 6. feb. 2009
+ * 
+ */
 class Number extends Faker {
 	public function __construct() {	}
 	public function __get($var) { return $this->$var();	}
