@@ -1064,7 +1064,7 @@ class DummyData {
 				'Yukon', 
 				'Yuma', 
 				'Zanesville');
-	
+		return $cities;
 	}
 	
 	public static function get_counties() {

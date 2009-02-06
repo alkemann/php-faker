@@ -49,6 +49,9 @@ class Time extends Faker {
 	}
 	
 	public static function time($options = array()) {	
+		if (isset($options['variable']) && $options['variable'] == 'now') {
+			return date('H:i:s');
+		}			
 		if (isset($options['max']) && $options['max'] != '') {
 			$arr = explode(' ',$options['max']);
 			if (sizeof($arr) > 1) {
@@ -80,21 +83,80 @@ class Time extends Faker {
 	}
 	
 	public static function timestamp($options = array()) {
-		return time();
+		if (isset($options['variable']) && $options['variable'] == 'now') {
+			return time();
+		}
+		return rand(0,time());
 	}
 
 	public static function year($options = array()) {
 		$now = date('Y');
 		$min = (isset($options['min'])) ? $options['min'] : $now - 75;
-		$max = (isset($options['max'])) ? $options['min'] : $now;
+		$max = (isset($options['max'])) ? $options['max'] : $now;
+		if (isset($options['variable'])) 
+			switch ($options['variable']) {
+				case 'now' :
+					return $now;
+				break;
+				case 'future' :
+					if ($now+1 >= $max) return $max;
+					return rand($now+1,$max);
+				break;
+				case 'past' :
+					if ($now-1 <= $min) return $min;
+					return rand($min,$now-1);
+				break;
+				default:
+					
+			}
 		return rand($min,$max);
 	}
-	public static function month($options = array()) {
-		return rand(1,12);
+	public static function month($options = array()) {		
+		$min = (isset($options['min'])) ? $options['min'] : 1;
+		$max = (isset($options['max'])) ? $options['max'] : 12;
+		if (isset($options['variable'])) 
+			switch ($options['variable']) {
+				case 'now' :
+					return date('n');
+				break;
+				case 'future' :
+					$now = date('n');
+					if ($now+1 >= $max) return $max;
+					return rand($now+1,$max);
+				break;
+				case 'past' :
+					$now = date('n');
+					if ($now-1 <= $min) return $min;
+					return rand($min,$now-1);
+				break;
+				default:
+					
+			}
+		return rand($min,$max);
 	}
 	public static function day($options = array()) {
+		$min = (isset($options['min'])) ? $options['min'] : 1;
 		$max = (isset($options['max'])) ? $options['max'] : 28;
-		return rand(1,$max);
+		if (isset($options['variable'])) 
+			switch ($options['variable']) {
+				case 'now' :
+					return date('j');
+				break;
+				case 'future' :
+					$now = date('j');
+					$max = date('t');
+					if ($now+1 >= $max) return $max;
+					return rand($now+1,$max);
+				break;
+				case 'past' :
+					$now = date('j');
+					if ($now-1 <= $min) return $min;
+					return rand($min,$now-1);
+				break;
+				default:
+					
+			}
+		return rand($min,$max);
 	}
 	
 	
