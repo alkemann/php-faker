@@ -75,52 +75,7 @@ class Faker
 	{
 		return chr(mt_rand(97, 122));
 	}
-	
-	
-	/**
-	 * Replaces all occurrences of # with a random number
-	 *
-	 * @param string $string String you wish to have parsed
-	 * @return string
-	 * @author Caius Durling
-	 */
-	public function numerify( $string )
-	{
-		foreach ( str_split( $string ) as $char ) {
-			$result[] = str_replace( '#', $this->rand_num(), $char );
-		}
-		return join( $result );
-	}
-	
-	/**
-	 * Replaces all occurrences of ? with a random letter
-	 *
-	 * @param string $string String you wish to have parsed
-	 * @return string
-	 * @author Caius Durling
-	 */
-	public function lexify( $string )
-	{
-		foreach ( str_split( $string ) as $char ) {
-			$result[] = str_replace( '?', $this->rand_letter(), $char );
-		}
-		return join( $result );
-	}
-	
-	/**
-	 * Replaces all occurrences of # with a random number and
-	 * replaces all occurrences of ? with a random letter
-	 *
-	 * @param string $string String you wish to have parsed
-	 * @return string
-	 * @author Caius Durling
-	 */
-	public function bothify( $string )
-	{
-		$result = $this->numerify( $string );
-		$result = $this->lexify( $result );
-		return $result;
-	}
+
 	public static function generate_random_num_str($str) {
 		// loop through each character and convert all unescaped X's to 1-9 and 
 		// unescaped x's to 0-9.
