@@ -42,8 +42,9 @@ class Name extends Faker
 		return $result;
 	}
 	
-	public function full_name() {
-		return ;
+	public function full_name($options = array()) {
+		$dev = (isset($options['devider'])) ? $options['devider'] : ' ';
+		return self::firstname($options) . $dev . self::surname($options);
 	}
 	
 	public function firstname($options = array()) {

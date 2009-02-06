@@ -161,7 +161,7 @@ class Web extends Faker {
 		$returnString = '';
 		// Less than 20 char don't format
 		if ($htmlLength < 20) {
-			$returnString = self::loremIpsum($options);
+			$returnString = $loremSmall[rand(0,sizeof($loremSmall))-1];
 		}
 		
 		$htmlSet = rand(0, sizeof($htmlSetOn) - 1);
