@@ -64,9 +64,9 @@ class Lorem extends Faker
 	 * @return string
 	 * @author Caius Durling
 	 */
-	public function sentence( $word_count = 4 )
+	public function sentence( $options = array('max' => 8) )
 	{
-		$words = $this->words( $word_count + rand(0, 4) );
+		$words = $this->words( rand(2, $options['max']) );
 		$words[0] = ucwords( $words[0] );
 		return join( $words, " ") . ".";
 	}
@@ -78,7 +78,7 @@ class Lorem extends Faker
 	 * @return array
 	 * @author Caius Durling
 	 */
-	public function sentences( $sentence_count = 3 )
+	private function sentences( $sentence_count = 3 )
 	{
 		$c = $sentence_count + rand(0, 3);
 		for ($i=0; $i < $c; $i++) { 
@@ -94,9 +94,9 @@ class Lorem extends Faker
 	 * @return string
 	 * @author Caius Durling
 	 */
-	public function paragraph( $sentence_count = 3 )
+	public function paragraph( $options = array('max' => 6) )
 	{
-		return 'Lorem ipsum '.join( $this->sentences( $sentence_count + rand(0, 3) ), " " );
+		return 'Lorem ipsum '.join( $this->sentences( rand(2, $options['max']) ), " " );
 	}
 	
 	/**
@@ -106,9 +106,9 @@ class Lorem extends Faker
 	 * @return array
 	 * @author Caius Durling
 	 */
-	public function paragraphs( $paragraph_count = 3)
+	public function paragraphs( $options = array('max' => 3))
 	{
-		for ($i=0; $i < $paragraph_count; $i++) { 
+		for ($i=0; $i < $options['max']; $i++) { 
 			$p[] = $this->paragraph;
 		}
 		return $p;
