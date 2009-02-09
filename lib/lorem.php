@@ -66,6 +66,9 @@ class Lorem extends Faker
 	 */
 	public function sentence( $options = array('max' => 8) )
 	{
+		if (!isset($options['max'])) {
+			$options['max'] = 8;
+		}
 		$words = $this->words( rand(2, $options['max']) );
 		$words[0] = ucwords( $words[0] );
 		return join( $words, " ") . ".";

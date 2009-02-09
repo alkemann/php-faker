@@ -8,6 +8,7 @@
  * @modified 9. feb. 2009
  * 
  */
+include_once 'faker.php';
 class DummyWrapper {
 	
 	private static $Faker = null;
@@ -25,6 +26,29 @@ class DummyWrapper {
 		'Time' => array(),
 		'Web' => array()
 	);
+	
+	public static function listTimeGenerators() {
+		return array('Time' => self::listMethods('Time') );
+	}
+	public static function listNumberGenerators() {
+		return array(
+			'Number' => self::listMethods('Number')
+		);
+	}
+	public static function listStringGenerators() {
+		$ret = array(
+			'Name' => self::listMethods('Name'),
+			'English' => self::listMethods('English'),
+			'Web' => self::listMethods('Web'),
+			'Company' => self::listMethods('Company'),
+			'Address' => self::listMethods('Address'),
+			'Uk' => self::listMethods('Uk'),
+			'Usa' => self::listMethods('Usa'),
+			'Lorem' => self::listMethods('Lorem')
+		);
+		return $ret;
+	}
+	
 	
 	public static function listClasses($recursive = true) {
 		$ret = array();
@@ -49,7 +73,7 @@ class DummyWrapper {
 		$ret = array();
 		foreach ($methods as $one) {
 			if (substr($one,0,2) != '__' && substr($one,0,8) != 'generate') {
-				$ret[] = $one;
+				$ret[$class.'->'.$one] = $one;
 			}
 		}
 		return $ret;

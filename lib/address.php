@@ -24,7 +24,7 @@ class Address extends Faker
 		return $this->$var();
 	}
 	
-	public static function phone($options = array()) {
+	public function phone($options = array()) {
 		$syntax = isset($options['variable']) ? $options['variable'] : '(47) Xx xx xx xx';
 		return self::generate_random_num_str($syntax);
 	}

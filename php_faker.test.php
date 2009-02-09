@@ -170,15 +170,21 @@ class PhpFakerCase extends CakeTestCase {
 		
 		debug(array('Uk' => $a),true);
 	}
-	/**
+	/**/
 	function testLorem() {
 		$L = $this->Faker->Lorem;
 		
 		$a['word'] = $L->word;
-		$a['sentence'] = $L->sentence;
+		$a['sentence'] = $L->sentence(array(''));
 		$a['paragraph'] = $L->paragraph;
 		
 		debug(array('Lorem' => $a),true);		
+		
+		App::import('vendor','Dummy.DummyWrapper');
+		$english_generators = DummyWrapper::listMethods('Lorem');
+		debug(array(
+			'code' => 'DummyWrapper::listMethods("Lorem")',
+			'english_generators' => $english_generators));
 	}	
 	/**
 	function testCompany() {
@@ -200,7 +206,7 @@ class PhpFakerCase extends CakeTestCase {
 		
 		debug(array('English' => $a));
 	}
-	/**/
+	/**
 	function testDummyWrapper() {
 		App::import('vendor','Dummy.DummyWrapper');
 		
@@ -234,5 +240,6 @@ class PhpFakerCase extends CakeTestCase {
 			'code' => 'DummyWrapper::generate(\'Usa\',\'post_code\')',
 			'post_code' => $us_post_code));		
 	}
+	/**/
 }
 ?>
