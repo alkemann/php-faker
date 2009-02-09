@@ -19,7 +19,7 @@ class PhpFakerCase extends CakeTestCase {
 		$a['color'] = $E->color;
 		$a['city'] = $E->city;
 		
-		debug($a);
+		debug(array('English' => $a));
 	}
 	/**
 	public function testNumber() {
@@ -44,11 +44,12 @@ class PhpFakerCase extends CakeTestCase {
 		$a['phone']['default'] = $N->phone;
 		$a['phone']['555 Xxx xxx'] = $N->phone(array('variable'=>'555 Xxx xxx'));
 		
-		debug($a);
+		debug(array('Number' => $a));
 	}
 	/**
 	public function testTime() {
 		$T = &$this->Faker->Time;
+		
 		$a['date']['full'] = $T->date;
 		$a['date']['now'] = $T->date(array('variable' => 'now'));
 		$a['date']['future'] = $T->date(array('variable' => 'future'));
@@ -84,9 +85,9 @@ class PhpFakerCase extends CakeTestCase {
 		$a['day']['past'] = $T->day(array('variable' => 'past'));
 		$a['day']['future'] = $T->day(array('variable' => 'future'));
 		
-		debug($a);
+		debug(array('Time' => $a));
 	}	
-	/**/
+	/**
 	public function testWeb() {
 		$W = &$this->Faker->Web;
 		
@@ -109,7 +110,7 @@ class PhpFakerCase extends CakeTestCase {
 		
 		$a['html'] = $W->html;
 		
-		debug($a,true);
+		debug(array('Web' => $a),true);
 	}
 	/**
 	public function testName() {
@@ -130,7 +131,7 @@ class PhpFakerCase extends CakeTestCase {
 		$a['name'] = $N->name;		
 		$a['full_name'] = $N->full_name;
 		
-		debug($a,true);
+		debug(array('Name' => $a),true);
 	}
 	/**
 	public function testAddress() {
@@ -147,7 +148,7 @@ class PhpFakerCase extends CakeTestCase {
 		$a['post_code']['default'] = $Ad->post_code;
 		$a['post_code']['5xXX'] = $Ad->post_code(array('variable' => '5xXX'));
 		
-		debug($a,true);
+		debug(array('Address' => $a),true);
 	}
 	/**
 	public function testUsa() {
@@ -157,7 +158,7 @@ class PhpFakerCase extends CakeTestCase {
 		$a['us_state_abbr'] = $Usa->us_state_abbr;
 		$a['zip_code'] = $Usa->zip_code;
 		
-		debug($a,true);
+		debug(array('Usa' => $a),true);
 	}
 	/**
 	public function testUk() {
@@ -167,7 +168,7 @@ class PhpFakerCase extends CakeTestCase {
 		$a['uk_country'] = $Uk->uk_country;
 		$a['post_code'] = $Uk->post_code;
 		
-		debug($a,true);
+		debug(array('Uk' => $a),true);
 	}
 	/**
 	function testLorem() {
@@ -177,17 +178,8 @@ class PhpFakerCase extends CakeTestCase {
 		$a['sentence'] = $L->sentence;
 		$a['paragraph'] = $L->paragraph;
 		
-		debug($a,true);		
+		debug(array('Lorem' => $a),true);		
 	}	
-	/**	
-	function stestMultple() {
-		$E =& $this->Faker->English;
-		
-		for ($i=0; $i<10;$i++) 
-			$a[] = $E->title;
-		
-		debug($a);
-	}
 	/**
 	function testCompany() {
 		$C =& $this->Faker->Company;
@@ -197,8 +189,50 @@ class PhpFakerCase extends CakeTestCase {
 		$a['catch_phrase'] = $C->catch_phrase;
 		$a['bs'] = $C->bs;
 		
-		debug($a);
+		debug(array('Company' => $a));
+	}
+	/**
+	function stestMultple() {
+		$E =& $this->Faker->English;
+		
+		for ($i=0; $i<10;$i++) 
+			$a[] = $E->title;
+		
+		debug(array('English' => $a));
 	}
 	/**/
+	function testDummyWrapper() {
+		App::import('vendor','Dummy.DummyWrapper');
+		
+		$classes = DummyWrapper::listClasses(false);
+		debug(array(
+			'code' => 'DummyWrapper::listClasses(false)',
+			'classes' => $classes));		
+				
+		$english_generators = DummyWrapper::listMethods('English');
+		debug(array(
+			'code' => 'DummyWrapper::listMethods("English")',
+			'english_generators' => $english_generators));
+		
+		$name = DummyWrapper::generate('English','title', array('max' => 200));
+		debug(array(
+			'code' => 'DummyWrapper::generate("English","title", array("max" => 200))',
+			'english title' => $name));
+				
+		$subclasses = DummyWrapper::listSubClasses('Address');
+		debug(array(
+			'code' => 'DummyWrapper::listSubClasses("Address")',
+			'classes' => $subclasses));		
+		
+		$uk_post_code = DummyWrapper::generate('Uk','post_code');
+		debug(array(
+			'code' => 'DummyWrapper::generate(\'Uk\',\'post_code\')',
+			'post_code' => $uk_post_code));		
+		
+		$us_post_code = DummyWrapper::generate('Usa','post_code');
+		debug(array(
+			'code' => 'DummyWrapper::generate(\'Usa\',\'post_code\')',
+			'post_code' => $us_post_code));		
+	}
 }
 ?>
