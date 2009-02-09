@@ -24,6 +24,11 @@ class Address extends Faker
 		return $this->$var();
 	}
 	
+	public static function phone($options = array()) {
+		$syntax = isset($options['variable']) ? $options['variable'] : '(47) Xx xx xx xx';
+		return self::generate_random_num_str($syntax);
+	}
+		
 	public function street_suffix() {		
 		return parent::random( self::$_street_suffix );
 	}

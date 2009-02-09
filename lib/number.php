@@ -13,15 +13,12 @@ class Number extends Faker {
 	public function __construct() {	}
 	public function __get($var) { return $this->$var();	}
 	
-	public static function phone($options = array()) {
-		$syntax = isset($options['variable']) ? $options['variable'] : '(47) Xx xx xx xx';
-		return self::generate_random_num_str($syntax);
-	}
-	
+
 	public static function integer($options = array()) {
 		//		A normal-size integer. The signed range is -2147483648 to 2147483647. The unsigned range is 0 to 4294967295.
 		return self::createInt(4294967295, $options);
 	}
+		
 	public static function tinyInt($options = array()) {
 		//	A very small integer. The signed range is -128 to 127. The unsigned range is 0 to 255.
 		return self::createInt(255, $options);
