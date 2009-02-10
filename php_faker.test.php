@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Test / examples of all the current Vendor generators
+ * 
+ * @author Alexander Morland (alkemann)
+ * @modified 10. feb. 2009
+ */
 class PhpFakerCase extends CakeTestCase {
 	private $Faker = null;
 	
@@ -7,7 +12,7 @@ class PhpFakerCase extends CakeTestCase {
 		App::import('vendor','Dummy.faker');
 		$this->Faker = new Faker;
 	}
-	/**
+	/**/
 	public function testEnglish() {
 		$E = &$this->Faker->English;
 		$a['title'] = $E->title;
@@ -21,7 +26,7 @@ class PhpFakerCase extends CakeTestCase {
 		
 		debug(array('English' => $a));
 	}
-	/**
+	/**/
 	public function testNumber() {
 		$N = &$this->Faker->Number;
 		$a['integer']['full'] = $N->integer;
@@ -40,13 +45,10 @@ class PhpFakerCase extends CakeTestCase {
 		$a['tinyInt']['tinyInt(1)'] = $N->tinyInt(array('max'=>1));
 		
 		$a['boolean'] = $N->boolean;
-		
-		$a['phone']['default'] = $N->phone;
-		$a['phone']['555 Xxx xxx'] = $N->phone(array('variable'=>'555 Xxx xxx'));
-		
+				
 		debug(array('Number' => $a));
 	}
-	/**
+	/**/
 	public function testTime() {
 		$T = &$this->Faker->Time;
 		
@@ -87,7 +89,7 @@ class PhpFakerCase extends CakeTestCase {
 		
 		debug(array('Time' => $a));
 	}	
-	/**
+	/**/
 	public function testWeb() {
 		$W = &$this->Faker->Web;
 		
@@ -112,7 +114,7 @@ class PhpFakerCase extends CakeTestCase {
 		
 		debug(array('Web' => $a),true);
 	}
-	/**
+	/**/
 	public function testName() {
 		$N = &$this->Faker->Name;
 		
@@ -133,7 +135,7 @@ class PhpFakerCase extends CakeTestCase {
 		
 		debug(array('Name' => $a),true);
 	}
-	/**
+	/**/
 	public function testAddress() {
 		$Ad = &$this->Faker->Address;
 		
@@ -148,9 +150,12 @@ class PhpFakerCase extends CakeTestCase {
 		$a['post_code']['default'] = $Ad->post_code;
 		$a['post_code']['5xXX'] = $Ad->post_code(array('variable' => '5xXX'));
 		
+		$a['phone']['default'] = $Ad->phone;
+		$a['phone']['555 Xxx xxx'] = $Ad->phone(array('variable'=>'555 Xxx xxx'));
+		
 		debug(array('Address' => $a),true);
 	}
-	/**
+	/**/
 	public function testUsa() {
 		$Usa = &$this->Faker->Usa;
 		
@@ -160,7 +165,7 @@ class PhpFakerCase extends CakeTestCase {
 		
 		debug(array('Usa' => $a),true);
 	}
-	/**
+	/**/
 	public function testUk() {
 		$Uk = &$this->Faker->Uk;
 		
@@ -186,7 +191,7 @@ class PhpFakerCase extends CakeTestCase {
 			'code' => 'DummyWrapper::listMethods("Lorem")',
 			'english_generators' => $english_generators));
 	}	
-	/**
+	/**/
 	function testCompany() {
 		$C =& $this->Faker->Company;
 		
@@ -197,16 +202,7 @@ class PhpFakerCase extends CakeTestCase {
 		
 		debug(array('Company' => $a));
 	}
-	/**
-	function stestMultple() {
-		$E =& $this->Faker->English;
-		
-		for ($i=0; $i<10;$i++) 
-			$a[] = $E->title;
-		
-		debug(array('English' => $a));
-	}
-	/**
+	/**/
 	function testDummyWrapper() {
 		App::import('vendor','Dummy.DummyWrapper');
 		
