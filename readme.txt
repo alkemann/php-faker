@@ -1,33 +1,57 @@
-# Faker Readme
-Faker is a package that generates random fake data for you.
+# author Alexander Morland (alkemann) 
+# modified 10. feb. 2009
 
-Requirements:
+Creating custom generation method instructions:
+#################################################
 
-* PHP5
+1. First make sure you are not creating a duplicate of an existing method.
 
-To use it simply create a new faker object and then call a subclass & method.
+2. Decide if you are making a 
+ 
+   a. new generation class or 
+   b. adding a method to existing class.
+   
+   If b. skipp to point 5.
+   
+3. Decide if you new class should extend an existing one. 
+   It should only do this if it makes logical sense and the new class
+   partially or completely overwrite the existing methods.
+   Example of this is the "Uk" class that extends "Address" class by
+   making post_codes in a United Kingdom specific way.
+   
+   If you extend use such code :
 
-eg:
+		include_once 'address.php';
+		class Uk extends Address {
+
+   If not, just extend the "Faker" class.
 	
-	<?php
-		// Do this so it can find the classes needed
-		include( 'faker.php' );
-		// Create new faker object
-		$faker = new Faker;
-		// Output a random name
-		echo $faker->Name->name;
-	?>
+4. All generator classes should overwrite constructor and get methods:
+	
+	 
+5. Next give your method a descriptive name, preferably a noun. The 
+   method should take in one parameter, an array. The keys that are
+   passed directly from the webinterface of DummyData plugin are
+   'min','max' and 'variable', so using these if any is preferable.
+   
+6. The method should return a value (ie string or number). 
 
-You only need to include `faker.php` as it includes all the files under lib/ automatically.
+Example:
 
-***
+To create a new method that returns a random Donald Duck name, we could
+extend the Name class and replace the name property:
 
-# Version History
-
-
-* 0.2
-	Updates by ifunk for speed using PHP native functions and static variables
-	> From my own tests it performs roughly 10x faster than 0.1-dev -- ifunk
-
-* 0.1-dev
-	Initial Release
+<?php
+include_once 'name.php';
+class Donald extends Name {
+	public function __construct() {	}
+	
+	public function __get( $var ) {
+		return $this->$var();
+	}
+	
+	public static function name($options = array()) {
+		$names = array('Donald Duck','Mickey Mouse','Goofy','Pluto','Minnie Mouse');
+		return $names[ rand(1,count($names)) - 1 ];
+	}
+}
